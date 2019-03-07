@@ -1,0 +1,75 @@
+#修改端口
+server:
+  #端口号
+  port: 9999
+  tomcat:
+    uri-encoding: utf-8
+  max-http-header-size: 4048576
+    
+#文件上传
+servlet:
+  multipart:
+       max-file-size:  30MB
+       max-request-size:  30MB
+
+# MyBatis
+mybatis:
+    # 搜索指定包别名
+    typeAliasesPackage: com.xcy.pojo
+    # 配置mapper的扫描，找到所有的mapper.xml映射文件
+    mapperLocations: classpath:mybatis/*.xml
+
+       
+#模板引擎
+spring :
+    #数据源配置
+  datasource:
+      url: jdbc:mysql://localhost:3306/demo?useUnicode=true&characterEncoding=utf8&useSSL=false
+      username: root
+      password: root
+      driver-class-name: com.mysql.jdbc.Driver
+      type: com.alibaba.druid.pool.DruidDataSource
+      connectionProperties: druid.stat.mergeSql=true
+  freemarker:
+      #关闭缓存
+      cache: false
+      request-context-attribute: request
+      #模板加载的位置
+      template-loader-path: classpath:/templates
+      #前缀
+      suffix: .htm
+      #后缀
+      prefix: /htm/
+
+
+      
+#打印SQL     
+logging:
+  level:
+     com.xcy.mapper: debug
+
+          
+#热部署
+devtools:
+    restart:
+      enabled: true
+      additional-paths: src/main/java
+
+#Redis
+#redis连接池
+redis:
+    max-idle : 10
+    min-idle : 5
+    max-total : 20 
+    hostName : 192.168.1.50
+    password : 123456
+    port : 6379
+    
+#配置自动建表：updata:没有表新建，有表更新操作,控制台显示建表语句  
+jpa:
+  properties:
+     hibernate:
+        ddl-auto: update
+        dialect: org.hibernate.dialect.MySQL5Dialect
+     show-sql: true 
+     
